@@ -7,7 +7,7 @@ namespace Discount.API.Extentions
     {
         public static WebApplication MigrateDatabase<TContext>(this WebApplication app, int? retry = 0)
         {
-            int retryForAvailability = retry.Value;
+            int retryForAvailability = retry.GetValueOrDefault(0);
 
             using (var scope = app.Services.CreateScope())
             {
