@@ -19,7 +19,20 @@ namespace Ordering.Infrastructure.Persistence
         {
             return new List<Order>
             {
-                new Order() {UserName = "swn", FirstName = "Erbay", LastName = "Mavzer", EmailAddress = "mavzerbay@gmail.com", AddressLine = "Adatepe", Country = "Turkey", TotalPrice = 350 }
+                new Order() {
+                    UserName = "swn",
+                    FirstName = "Erbay",
+                    LastName = "Mavzer",
+                    EmailAddress = "mavzerbay@gmail.com",
+                    AddressLine = "Adatepe",
+                    Country = "Turkey",
+                    State="İzmir",
+                    CardName="EnPara",
+                    CardNumber="4242 4242 4242 4242",
+                    CVV="000",
+                    Expiration="09/10",
+                    TotalPrice = 350
+                }
             };
         }
     }
