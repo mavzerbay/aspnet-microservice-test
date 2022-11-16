@@ -46,7 +46,7 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "catalog.api",
+                    "Host": "basket.api",
                     "Port": 80
                 }
             ],
