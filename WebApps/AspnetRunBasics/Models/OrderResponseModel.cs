@@ -1,6 +1,6 @@
 ﻿namespace AspnetRunBasics.Models
 {
-    public class BasketCheckoutModel
+    public class OrderResponseModel
     {
         public string UserName { get; set; } = null!;
         public decimal TotalPrice { get; set; }
