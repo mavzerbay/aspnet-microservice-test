@@ -8,13 +8,13 @@ services:
       - "27017:27017"
     volumes:
       - mongo_data:/data/db
-      
+
   basketdb:
     container_name: basketdb
     restart: always
     ports:
       - "6379:6379"
-      
+
   discountdb:
     container_name: discountdb
     environment:
@@ -30,8 +30,8 @@ services:
   orderdb:
     container_name: orderdb
     environment:
-        SA_PASSWORD: "Password123*"
-        ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Password123*"
+      ACCEPT_EULA: "Y"
     restart: always
     ports:
       - "1433:1433"
@@ -53,7 +53,7 @@ services:
       - "5050:80"
     volumes:
       - pgadmin_data:/root/.pgadmin
-      
+
   portainer:
     container_name: portainer
     restart: always
@@ -63,7 +63,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
-      
+
   catalog.api:
     container_name: catalog.api
     environment:
@@ -87,7 +87,6 @@ services:
     ports:
       - "8001:80"
 
-
   discount.api:
     container_name: discount.api
     environment:
@@ -98,7 +97,6 @@ services:
     ports:
       - "8002:80"
 
-
   discount.grpc:
     container_name: discount.grpc
     environment:
@@ -108,7 +106,6 @@ services:
       - discountdb
     ports:
       - "8003:80"
-
 
   ordering.api:
     container_name: ordering.api
@@ -122,7 +119,6 @@ services:
     ports:
       - "8004:80"
 
-
   ocelotapigateway:
     container_name: ocelotapigateway
     environment:
@@ -134,7 +130,6 @@ services:
       - ordering.api
     ports:
       - "8010:80"
-
 
   shopping.aggregator:
     container_name: shopping.aggregator
@@ -150,3 +145,16 @@ services:
     ports:
       - "8005:80"
 
+  aspnetrunbasics:
+    container_name: aspnetrunbasics
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ApiSettings:GatewayAddress=http://ocelotapigateway"
+    depends_on:
+      - ocelotapigateway
+      - catalog.api
+      - basket.api
+      - discount.api
+      - ordering.api
+    ports:
+      - "8006:80"
